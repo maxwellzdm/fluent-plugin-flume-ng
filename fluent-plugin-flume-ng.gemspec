@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.authors = ["DEMING ZHU"]
   s.date = "2015-06-10"
   s.description = "Fluentd Plugin For New Generation Flume"
-  s.email = "deming.zhu@linecorp.com"
+  s.email = "maxwell@njuopen.com"
   s.extra_rdoc_files = [
     "LICENSE",
     "README.md",
@@ -43,7 +43,6 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_runtime_dependency(%q<fluentd>, ["~> 0.10.16"])
-      s.add_runtime_dependency(%q<thrift>, ["~> 0.8.0"])
     else
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
@@ -51,7 +50,6 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<fluentd>, ["~> 0.10.16"])
-      s.add_dependency(%q<thrift>, ["~> 0.8.0"])
     end
   else
     s.add_dependency(%q<shoulda>, [">= 0"])
@@ -60,7 +58,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<fluentd>, ["~> 0.10.16"])
-    s.add_dependency(%q<thrift>, ["~> 0.8.0"])
   end
 end
 
