@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "fluent-plugin-flume-ng.gemspec",
-    "lib/fluent-plugin-flume-ng.rb",
     "lib/fluent/plugin/in_flume_ng.rb",
     "lib/fluent/plugin/thrift/flume.thrift",
     "lib/fluent/plugin/thrift/flume_constants.rb",
