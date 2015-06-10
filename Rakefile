@@ -19,13 +19,11 @@ Jeweler::Tasks.new do |gem|
   gem.license = "MIT"
   gem.summary = %Q{Fluentd Plugin For New Generation Flume}
   gem.description = %Q{Fluentd Plugin For New Generation Flume}
-  gem.email = "deming.zhu@linecorp.com"
+  gem.email = "maxwell@njuopen.com"
   gem.authors = ["DEMING ZHU"]
   gem.add_dependency "fluentd", "~> 0.10.16"
-  gem.add_dependency "thrift", "~> 0.8.0"
   gem.files = Dir["lib/**/*"] +
        %w[VERSION  Rakefile fluent-plugin-flume-ng.gemspec]
-  # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
 
