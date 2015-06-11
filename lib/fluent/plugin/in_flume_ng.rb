@@ -17,7 +17,7 @@
 module Fluent
 
 class FlumeNGInput < Input
-  Plugin.register_input('flume-ng', self)
+  Plugin.register_input('flume_ng', self)
 
   def initialize
     require 'thrift'
@@ -61,7 +61,7 @@ class FlumeNGInput < Input
     protocol_factory = Thrift::CompactProtocolFactory.new 
 
     unless ['none', 'json'].include? @format
-      raise 'Unknown format: message_format=#{@message_format}'
+      raise 'Unknown format: format=#{@format}'
     end
 
     @server = Thrift::SimpleServer.new processor, @transport, transport_factory, protocol_factory
@@ -92,7 +92,7 @@ class FlumeNGInput < Input
       begin
         record = parse_record(event)
         tag = event.headers[@tag_header] || @default_tag
-        timestamp = event.headers['timestamp'] || Engine.now
+        timestamp = event.headers['timestamp'].to_i || Engine.now
         if @add_prefix
           Engine.emit(@add_prefix + '.' + tag, timestamp, record)
         else
@@ -113,7 +113,7 @@ class FlumeNGInput < Input
       events.each { |event| 
         begin
           record = parse_record(event)
-          timestamp = event.headers['timestamp'] || Engine.now
+          timestamp = event.headers['timestamp'].to_i || Engine.now
           es.add(timestamp, record)
         rescue
           log.error "unexpected error", :error=>$!.to_s
@@ -141,7 +141,7 @@ class FlumeNGInput < Input
 
     private
     def parse_record(event)
-      case @message_format
+      case @format
       when 'none'
         return {'message'=>event.body.force_encoding('UTF-8')}
       when 'json'
@@ -149,7 +149,7 @@ class FlumeNGInput < Input
         raise 'event body must be a Hash' unless js.is_a?(Hash)
         return js
       else
-        raise 'Invalid format: #{@message_format}'
+        raise 'Invalid format: #{@format}'
       end
     end
   end
