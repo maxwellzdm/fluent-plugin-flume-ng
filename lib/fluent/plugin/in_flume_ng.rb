@@ -92,7 +92,11 @@ class FlumeNGInput < Input
       begin
         record = parse_record(event)
         tag = event.headers[@tag_header] || @default_tag
-        timestamp = event.headers['timestamp'].to_i || Engine.now
+        if event.headers.has_key?("timestamp")
+          timestamp = event.headers["timestamp"].to_i/1000.0
+        else
+          timestamp = Engine.now
+        end
         if @add_prefix
           Engine.emit(@add_prefix + '.' + tag, timestamp, record)
         else
@@ -113,7 +117,11 @@ class FlumeNGInput < Input
       events.each { |event| 
         begin
           record = parse_record(event)
-          timestamp = event.headers['timestamp'].to_i || Engine.now
+          if event.headers.has_key?("timestamp")
+            timestamp = event.headers["timestamp"].to_i/1000.0
+          else
+            timestamp = Engine.now
+          end
           es.add(timestamp, record)
         rescue
           log.error "unexpected error", :error=>$!.to_s
