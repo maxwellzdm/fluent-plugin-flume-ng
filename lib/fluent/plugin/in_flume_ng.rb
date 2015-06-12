@@ -70,7 +70,7 @@ class FlumeNGInput < Input
 
   def shutdown
     @transport.close
-    @thread.join 
+    #@thread.join
   end
 
   def run
